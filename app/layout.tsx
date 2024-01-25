@@ -5,6 +5,7 @@ import clsx from 'clsx'
 import Header from '@/components/Header'
 
 const varelaRound = Varela_Round({subsets: ['latin'], weight: '400'})
+const devMode = process.env.devMode
 
 export const metadata: Metadata = {
   title: 'Squarespace Portfolio Clone | Bertie Gregory',
@@ -21,7 +22,8 @@ export default function RootLayout({
       <body
         className={clsx(
           varelaRound.className,
-          'px-8 md:container border-2 min-h-screen'
+          'px-8 md:container border-2 min-h-screen',
+          devMode && 'debug-screens'
         )}
       >
         <Header />

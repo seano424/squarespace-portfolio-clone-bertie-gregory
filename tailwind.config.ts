@@ -18,7 +18,16 @@ const config: Config = {
       center: true,
       padding: '1rem',
     },
+    debugScreens: {
+      position: ['bottom', 'right'],
+      style: {
+        backgroundColor: '#C0FFEE',
+        color: 'black',
+        padding: '.5rem',
+        margin: '.5rem',
+      },
+    },
   },
-  plugins: [],
+  plugins: [require('tailwindcss-debug-screens')],
 }
 export default config
