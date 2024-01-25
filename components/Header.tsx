@@ -14,6 +14,10 @@ const navLinks = [
     label: 'web projects',
   },
   {
+    href: 'https://seanoreilly.me',
+    label: 'website',
+  },
+  {
     href: '/stills',
     label: 'stills',
   },
