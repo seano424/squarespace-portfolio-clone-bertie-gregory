@@ -3,6 +3,7 @@ import {Varela_Round} from 'next/font/google'
 import './globals.css'
 import clsx from 'clsx'
 import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 
 const varelaRound = Varela_Round({subsets: ['latin'], weight: '400'})
 const devMode = process.env.devMode
@@ -28,9 +29,7 @@ export default function RootLayout({
       >
         <Header />
         <main className="flex-1">{children}</main>
-        <footer className="border-t-2 py-10 flex items-center justify-center">
-          hello world
-        </footer>
+        <Footer />
       </body>
     </html>
   )
