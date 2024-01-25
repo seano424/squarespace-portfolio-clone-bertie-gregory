@@ -2,6 +2,7 @@ import type {Metadata} from 'next'
 import {Varela_Round} from 'next/font/google'
 import './globals.css'
 import clsx from 'clsx'
+import Header from '@/components/Header'
 
 const varelaRound = Varela_Round({subsets: ['latin'], weight: '400'})
 
@@ -17,7 +18,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={clsx(varelaRound.className, 'container border-2 min-h-screen')}>
+      <body
+        className={clsx(
+          varelaRound.className,
+          'px-8 md:container border-2 min-h-screen'
+        )}
+      >
+        <Header />
         {children}
       </body>
     </html>
