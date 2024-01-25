@@ -46,21 +46,24 @@ export default function Header() {
       </ul>
 
       <nav className="flex justify-between items-center text-stone-500 text-[12px]">
-        <span className="w-2 h-[1px] bg-stone-500 rounded" />
-        {navLinks.map(({href, label}) => (
-          <Link
-            className={clsx(
-              'hover:text-stone-800 pb-[2px] hover:border-b-2 hover:border-stone-300',
-              href === pathname && 'text-stone-800 border-b-2 border-stone-300',
-              'transition-all duration-200 ease-in-out'
-            )}
-            key={href}
-            href={href}
-          >
-            {label}
-          </Link>
-        ))}
-        <span className="w-2 h-[1px] bg-stone-500 rounded" />
+        <span className="bg-stone-300 h-[1px] rounded flex-1 hidden lg:inline-block" />
+        <div className="flex gap-10 lg:px-10 justify-center w-full lg:w-auto">
+          {navLinks.map(({href, label}) => (
+            <Link
+              className={clsx(
+                'hover:text-stone-800 pb-[2px] hover:border-b-2 hover:border-stone-300',
+                href === pathname &&
+                  'text-stone-800 border-b-2 border-stone-300',
+                'transition-all duration-200 ease-in-out'
+              )}
+              key={href}
+              href={href}
+            >
+              {label}
+            </Link>
+          ))}
+        </div>
+        <span className="bg-stone-300 h-[1px] rounded flex-1 hidden lg:inline-block" />
       </nav>
     </header>
   )
