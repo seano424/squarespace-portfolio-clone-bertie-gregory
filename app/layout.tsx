@@ -22,12 +22,15 @@ export default function RootLayout({
       <body
         className={clsx(
           varelaRound.className,
-          'px-8 md:container border-2 min-h-screen',
+          'px-8 md:container flex flex-col border-2 min-h-screen',
           devMode && 'debug-screens'
         )}
       >
         <Header />
-        {children}
+        <main className="flex-1">{children}</main>
+        <footer className="border-t-2 py-10 flex items-center justify-center">
+          hello world
+        </footer>
       </body>
     </html>
   )
