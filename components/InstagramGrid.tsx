@@ -16,11 +16,8 @@ async function getData(): Promise<InstagramPostsData> {
   const res = await fetch(
     `https://graph.instagram.com/${userId}/media?access_token=${accessToken}&fields=media_url,permalink,thumbnail_url`
   )
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
 
   if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
     throw new Error('Failed to fetch data')
   }
 
@@ -29,6 +26,7 @@ async function getData(): Promise<InstagramPostsData> {
 
 export default async function InstagramGrid() {
   const data = await getData()
+
   return (
     <section>
       <h4 className="mt-10 mb-8 uppercase tracking-widest text-center text-[13px]">
@@ -38,14 +36,14 @@ export default async function InstagramGrid() {
         {data &&
           data.data.slice(0, 8).map(({id, thumbnail_url, media_url}) => (
             <div
+            key={id}
               className="bg-blue-100 relative h-[400px]"
-              key={id}
             >
               <Image
-                src={thumbnail_url ? thumbnail_url : media_url}
-                alt="Sean O'Reilly"
-                className="object-cover object-center w-full h-full"
                 fill
+                alt="Sean O'Reilly"
+                src={thumbnail_url ? thumbnail_url : media_url}
+                className="object-cover object-center w-full h-full"
               />
             </div>
           ))}
