@@ -10,8 +10,11 @@ type InstagramPostsData = {
 }
 
 async function getData(): Promise<InstagramPostsData> {
+  const accessToken = process.env.instagramAccessToken
+  const userId = process.env.instagramUserId
+
   const res = await fetch(
-    'https://graph.instagram.com/7339384856125340/media?access_token=IGQWRQLVdiZAEJDUkxYNGx2cDA5UlB0TFNOVTNTQV9saTYwQXJMdWhkcVNHOFBNMENXOHF4dmc5TTBZAOXRzU0xkRk5IbV9iLXVldU4wY1hlbGlrbndLUlVwTzcyc3h0dVFGanpheWJfMGxVMk14ZADdtQld4dG5kbk0ZD&fields=media_url,permalink,thumbnail_url'
+    `https://graph.instagram.com/${userId}/media?access_token=${accessToken}&fields=media_url,permalink,thumbnail_url`
   )
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.
