@@ -2,6 +2,7 @@
 
 import clsx from 'clsx'
 import Link from 'next/link'
+import {useState} from 'react'
 import {usePathname} from 'next/navigation'
 
 const navLinks = [
@@ -33,9 +34,29 @@ const navLinks = [
 
 export default function Header() {
   const pathname = usePathname()
+  const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <header className="text-center pt-7 pb-12 uppercase tracking-widest">
+    <header className="text-center md:pt-7 pb-12 uppercase tracking-widest">
+      {isOpen && (
+        <div className="md:hidden flex flex-col items-center gap-3 justify-center py-3 text-stone-400">
+          {navLinks.map(({href, label}) => (
+            <Link
+              key={label}
+              className="hover:text-stone-500 transition-colors duration-200 ease-in-out"
+              href={href}
+            >
+              {label}
+            </Link>
+          ))}
+        </div>
+      )}
+      <button
+        onClick={() => setIsOpen((prev) => !prev)}
+        className="md:hidden block tracking-widest uppercase text-stone-400 text-center w-full py-3 mb-7 border-y-2"
+      >
+        Menu
+      </button>
       <Link
         className="font-bold text-xl text-stone-700"
         href="/"
@@ -43,7 +64,7 @@ export default function Header() {
         Sean O'Reilly
       </Link>
 
-      <ul className="mb-8 mt-4 flex text-[12px] gap-4 text-stone-200 justify-center">
+      <ul className="mb-4 md:mb-8 mt-4 flex text-[12px] gap-4 text-stone-200 justify-center">
         <li>Web Developer</li>
         <li>Photographer</li>
         <li>World Traveler</li>
@@ -51,7 +72,7 @@ export default function Header() {
 
       <nav className="flex justify-between items-center text-stone-500 text-[12px]">
         <span className="bg-stone-300 h-[1px] rounded flex-1 hidden lg:inline-block" />
-        <div className="flex gap-10 lg:px-10 justify-center w-full lg:w-auto">
+        <div className="hidden md:flex gap-10 lg:px-10 justify-center w-full lg:w-auto">
           {navLinks.map(({href, label}) => (
             <Link
               className={clsx(
