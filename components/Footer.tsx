@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default function Footer() {
   return (
-    <footer className="border-t-2 py-10 flex gap-2 items-center justify-center group">
+    <footer className="border-t-2 mt-12 py-10 flex gap-2 items-center justify-center group">
       <Link
         href="/"
         className="bg-red-500 p-1 rounded group-hover:opacity-20 hover:!opacity-100 transition-opacity duration-200 ease-in-out"
