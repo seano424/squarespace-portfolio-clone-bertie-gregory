@@ -4,6 +4,7 @@ import clsx from 'clsx'
 import Link from 'next/link'
 import {useState} from 'react'
 import {usePathname} from 'next/navigation'
+import {AnimatePresence, motion} from 'framer-motion'
 
 const navLinks = [
   {
@@ -37,23 +38,35 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <header className="text-center md:pt-7 pb-12 uppercase tracking-widest">
-      {isOpen && (
-        <div className="md:hidden flex flex-col items-center gap-3 justify-center py-3 text-stone-400">
-          {navLinks.map(({href, label}) => (
-            <Link
-              key={label}
-              className="hover:text-stone-500 transition-colors duration-200 ease-in-out"
-              href={href}
-            >
-              {label}
-            </Link>
-          ))}
-        </div>
-      )}
+    <header className="text-center md:pt-7 pb-12 uppercase tracking-widest pt-3">
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            key="modal"
+            initial={{height: 0}}
+            animate={{height: 'auto'}}
+            exit={{height: 0}}
+            transition={{duration: 0.75}}
+            className="md:hidden flex flex-col items-center gap-3 justify-center text-stone-400 overflow-hidden"
+          >
+            {navLinks.map(({href, label}) => (
+              <Link
+                key={label}
+                className="hover:text-stone-500 transition-colors duration-200 ease-in-out"
+                href={href}
+              >
+                {label}
+              </Link>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
       <button
         onClick={() => setIsOpen((prev) => !prev)}
-        className="md:hidden block tracking-widest uppercase text-stone-400 text-center w-full py-3 mb-7 border-y-2"
+        className={clsx(
+          'md:hidden block tracking-widest uppercase text-stone-400 text-center w-full py-3 mb-7 border-y-2 transition-transform duration-200 ease-in-out transform',
+          isOpen ? 'translate-y-3' : 'translate-y-0'
+        )}
       >
         Menu
       </button>
